@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41cdee9c-29a3-4e41-9739-a4fc19e4b816" name="Changes" comment="" />
+    <list default="true" id="41cdee9c-29a3-4e41-9739-a4fc19e4b816" name="Changes" comment="Upload Resource API fix">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource-service/src/main/java/com/example/ResourceService/exceptionhandler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/resource-service/src/main/java/com/example/ResourceService/exceptionhandler/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource-service/src/main/java/com/example/ResourceService/service/ResourceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/resource-service/src/main/java/com/example/ResourceService/service/ResourceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/song-service/src/main/java/com/example/SongService/exceptionhandler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/song-service/src/main/java/com/example/SongService/exceptionhandler/GlobalExceptionHandler.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +25,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "taya-roy-epam"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/taya-roy-epam/maven-project.git",
+    "accountId": "b028def0-e1f1-4ed6-a726-1836b57b9a3a"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -30,9 +47,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.ResourceServiceApplication.executor": "Run",
+    "Application.ResourceServiceApplication.executor": "Debug",
     "Application.SongServiceApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/taya_roy/Desktop/maven-project/song-service/src/main/java/com/example/SongService"
@@ -50,7 +68,7 @@
       <recent name="com.example.SongService.exceptionhandler" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.SongServiceApplication">
+  <component name="RunManager" selected="Application.ResourceServiceApplication">
     <configuration name="ResourceServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.ResourceService.ResourceServiceApplication" />
       <module name="ResourceService" />
@@ -79,8 +97,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.SongServiceApplication" />
         <item itemvalue="Application.ResourceServiceApplication" />
+        <item itemvalue="Application.SongServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -93,25 +111,43 @@
       <option name="presentableId" value="Default" />
       <updated>1739362606351</updated>
     </task>
+    <task id="LOCAL-00001" summary="Upload Resource API fix">
+      <option name="closed" value="true" />
+      <created>1739461406038</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1739461406038</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Upload Resource API fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upload Resource API fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/resource-service/src/main/java/com/example/ResourceService/service/ResourceService.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/resource-service/src/main/java/com/example/ResourceService/service/ResourceService.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/resource-service/src/main/java/com/example/ResourceService/rest/client/SongServiceClient.java</url>
           <line>21</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/resource-service/src/main/java/com/example/ResourceService/controller/ResourceController.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/resource-service/src/main/java/com/example/ResourceService/service/ResourceService.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/resource-service/src/main/java/com/example/ResourceService/service/ResourceService.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -76,9 +76,11 @@ public class ResourceService {
             }
         });
 
-        songServiceClient.deleteSongMetadata(deletedIds.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(",")));
+        if(deletedIds.size() != 0) {
+            songServiceClient.deleteSongMetadata(deletedIds.stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(",")));
+        }
 
         return new DeleteResourceResponse(deletedIds.toArray(new Integer[0]));
     }

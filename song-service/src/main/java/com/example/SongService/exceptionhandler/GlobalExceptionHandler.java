@@ -67,7 +67,13 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleException(Exception e) {
-        return new ResponseEntity<>("An error occurred on the server.", HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<Map<String, Object>> handleException(Exception e) {
+        Map<String, Object> errorResponse = new HashMap<>();
+        errorResponse.put("errorMessage", "An error occurred on the server.");
+        errorResponse.put("errorCode", "500");
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(errorResponse);
     }
 }
