@@ -9,6 +9,7 @@ import com.example.ResourceService.response.UploadResourceResponse;
 import com.example.ResourceService.rest.client.SongServiceClient;
 import com.example.ResourceService.validator.ResourceValidator;
 import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.mp3.Mp3Parser;
 import org.apache.tika.sax.BodyContentHandler;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import org.xml.sax.ContentHandler;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -38,18 +40,14 @@ public class ResourceService {
     @Autowired
     private SongServiceClient songServiceClient;
 
-    public UploadResourceResponse uploadResource(MultipartFile file) {
-        ResourceValidator.validateFile(file);
+    public UploadResourceResponse uploadResource(byte[] fileBytes, String contentType) {
+        ResourceValidator.validateFile(fileBytes, contentType);
         Resource resource = new Resource();
-        try {
-            resource.setFile(file.getBytes());
-        } catch (IOException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred on the server.");
-        }
-        Metadata metadata = extractMetadata(file);
+        resource.setFile(fileBytes);
+        Metadata metadata = extractMetadata(fileBytes);
         ResourceValidator.validateMetadata(metadata);
         resourceRepository.save(resource);
-        System.out.println(songServiceClient.createSongMetadata(SongMetadataMapper.mapToSongMetadata(resource.getId(), metadata)));
+        songServiceClient.createSongMetadata(SongMetadataMapper.mapToSongMetadata(resource.getId(), metadata));
         return new UploadResourceResponse(resource.getId());
     }
 
@@ -85,19 +83,16 @@ public class ResourceService {
         return new DeleteResourceResponse(deletedIds.toArray(new Integer[0]));
     }
 
-    private Metadata extractMetadata(MultipartFile file) {
-        Metadata metadata = new Metadata();
-
-        try (InputStream input = file.getInputStream()) {
+    private Metadata extractMetadata(byte[] fileBytes) {
+        try (InputStream input = new ByteArrayInputStream(fileBytes)) {
             ContentHandler handler = new BodyContentHandler();
-            Mp3Parser mp3Parser = new Mp3Parser();
-            ParseContext parseContext = new ParseContext();
-            mp3Parser.parse(input, handler, metadata, parseContext);
+            Metadata metadata = new Metadata();
+            AutoDetectParser parser = new AutoDetectParser();
+            parser.parse(input, handler, metadata, new ParseContext());
+            return metadata;
         } catch (Exception e) {
             throw new IllegalArgumentException("The request body is invalid MP3.");
         }
-
-        return metadata;
     }
 
 }

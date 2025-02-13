@@ -11,12 +11,9 @@ public class ResourceValidator {
 
     private static final long MAX_FILE_SIZE = 10 * 1024 * 1024;
 
-    public static void validateFile(MultipartFile file) {
+    public static void validateFile(byte[] fileBytes, String contentType) {
 
-        if (file.isEmpty()
-                || !Objects.equals(file.getContentType(), "audio/mpeg")
-                || !Objects.requireNonNull(file.getOriginalFilename()).toLowerCase().endsWith(".mp3")
-                || file.getSize() > MAX_FILE_SIZE) {
+        if (!"audio/mpeg".equals(contentType) || fileBytes == null || fileBytes.length == 0 || fileBytes.length > MAX_FILE_SIZE) {
             throw new IllegalArgumentException("The request body is invalid MP3.");
         }
     }

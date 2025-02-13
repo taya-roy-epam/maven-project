@@ -18,10 +18,11 @@ public class ResourceController {
     @Autowired
     private ResourceService resourceService;
 
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<UploadResourceResponse> uploadResource(@RequestParam("file") MultipartFile file) {
-        UploadResourceResponse uploadResourceResponse = resourceService.uploadResource(file);
-        return new ResponseEntity<>(uploadResourceResponse, HttpStatus.OK);
+    @PostMapping
+    public ResponseEntity<UploadResourceResponse> uploadResource(@RequestBody byte[] fileBytes,
+                                                                 @RequestHeader(HttpHeaders.CONTENT_TYPE) String contentType) {
+        UploadResourceResponse uploadResourceResponse = resourceService.uploadResource(fileBytes, contentType);
+        return ResponseEntity.ok(uploadResourceResponse);
     }
 
     @GetMapping("/{id}")
